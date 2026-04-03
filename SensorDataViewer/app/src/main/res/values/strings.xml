@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Sensor Data Viewer</string>
+        <string name="dashboard_title">Sensor Data Dashboard</string>
+        <string name="label_accelerometer">Accelerometer (m/s²)</string>
+        <string name="label_light">Light Sensor (lx)</string>
+        <string name="label_proximity">Proximity Sensor (cm)</string>
+        <string name="default_x">X: 0.0</string>
+        <string name="default_y">Y: 0.0</string>
+        <string name="default_z">Z: 0.0</string>
+        <string name="default_light">Ambient Light: 0.0</string>
+        <string name="default_proximity">Distance: 0.0</string>
 </resources>
