@@ -20,21 +20,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Apply saved theme first
-        if (ThemeStorage.loadTheme(this)) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
+        super.onCreate(savedInstanceState); // ✅ FIXED: super first
 
-        super.onCreate(savedInstanceState);
+        // Apply saved theme after super
+        boolean isDark = ThemeStorage.loadTheme(this);
+        AppCompatDelegate.setDefaultNightMode(
+                isDark ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+        );
+
         setContentView(R.layout.activity_main);
 
         // Rates relative to 1 USD
         rates.put("USD", 1.0);
-        rates.put("INR", 93.20);   // was 83.0
-        rates.put("JPY", 159.40);  // was 150.0
-        rates.put("EUR", 0.8673);  // was 0.92
+        rates.put("INR", 93.20);
+        rates.put("JPY", 159.40);
+        rates.put("EUR", 0.8673);
 
         amountInput = findViewById(R.id.amountInput);
         fromSpinner = findViewById(R.id.fromSpinner);
@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
         Button settingsButton = findViewById(R.id.settingsButton);
 
         String[] currencies = {"USD", "INR", "JPY", "EUR"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, currencies);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_dropdown_item, currencies
+        );
         fromSpinner.setAdapter(adapter);
         toSpinner.setAdapter(adapter);
 
