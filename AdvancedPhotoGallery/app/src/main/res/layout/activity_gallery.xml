@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#E8380D"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Photo Gallery"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Center content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <!-- Camera icon -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@android:drawable/ic_menu_camera"
+            android:backgroundTint="#FFE0D9"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:padding="20dp"
+            android:tint="#E8380D" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Photo Gallery"
+            android:textColor="#E8380D"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Capture, organize and browse your photos"
+            android:textColor="#888888"
+            android:textSize="13sp"
+            android:gravity="center" />
+
+        <!-- Folder info card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Save Folder"
+                    android:textColor="#E8380D"
+                    android:textStyle="bold"
+                    android:textSize="13sp" />
+                <TextView
+                    android:id="@+id/tvCurrentFolder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Save folder: Not selected"
+                    android:textColor="#555555"
+                    android:textSize="12sp"
+                    android:ellipsize="middle"
+                    android:singleLine="true" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Take Photo button -->
+        <Button
+            android:id="@+id/btnTakePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="20dp"
+            android:text="📷  TAKE PHOTO"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:backgroundTint="#E8380D"
+            app:cornerRadius="8dp" />
+
+        <!-- Choose Folder button -->
+        <Button
+            android:id="@+id/btnChooseFolder"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:text="📁  CHOOSE FOLDER"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:backgroundTint="#333333"
+            app:cornerRadius="8dp" />
+
+        <!-- View Gallery button -->
+        <Button
+            android:id="@+id/btnViewGallery"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:text="🖼  VIEW GALLERY"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:backgroundTint="#FFC107"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+</LinearLayout>

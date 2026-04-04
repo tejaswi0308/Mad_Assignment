@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#121212">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#E8380D"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Photo Gallery"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Folder path bar -->
+    <TextView
+        android:id="@+id/tvFolderPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E8380D"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="8dp"
+        android:text="/storage/..."
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        android:ellipsize="middle"
+        android:singleLine="true" />
+
+    <GridView
+        android:id="@+id/gridViewDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="3"
+        android:horizontalSpacing="2dp"
+        android:verticalSpacing="2dp"
+        android:padding="2dp"
+        android:stretchMode="columnWidth"
+        android:background="#000000" />
+
+</LinearLayout>
