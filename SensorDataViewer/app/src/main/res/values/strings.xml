@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Sensor Data Viewer</string>
-        <string name="dashboard_title">Sensor Data Dashboard</string>
         <string name="label_accelerometer">Accelerometer (m/s²)</string>
         <string name="label_light">Light Sensor (lx)</string>
         <string name="label_proximity">Proximity Sensor (cm)</string>
