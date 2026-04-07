@@ -4,9 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.currency_converter"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.currency_converter"

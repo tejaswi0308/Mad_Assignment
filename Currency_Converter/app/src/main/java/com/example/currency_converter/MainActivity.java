@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); // ✅ FIXED: super first
+        super.onCreate(savedInstanceState);
 
         // Apply saved theme after super
         boolean isDark = ThemeStorage.loadTheme(this);
@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Rates relative to 1 USD
         rates.put("USD", 1.0);
-        rates.put("INR", 93.20);
-        rates.put("JPY", 159.40);
-        rates.put("EUR", 0.8673);
+        rates.put("INR", 93.00);
+        rates.put("JPY", 159.90);
+        rates.put("EUR", 0.86);
 
         amountInput = findViewById(R.id.amountInput);
         fromSpinner = findViewById(R.id.fromSpinner);
