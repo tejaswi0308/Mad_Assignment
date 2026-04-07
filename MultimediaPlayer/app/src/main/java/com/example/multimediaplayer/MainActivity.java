@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private VideoView videoView;
     private MediaPlayer mediaPlayer;
     private boolean isVideoActive = false;
-    private boolean isVideoStopped = false; // ✅ Track stopped state explicitly
+    private boolean isVideoStopped = false;
     private static final int PICK_AUDIO_REQUEST = 1;
     private String currentVideoUrl = null;
 
@@ -31,8 +31,10 @@ public class MainActivity extends AppCompatActivity {
             EditText urlEditText = new EditText(this);
             urlEditText.setHint("Enter stream URL");
             urlEditText.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_URI);
+            urlEditText.setTextColor(getColor(android.R.color.black));
+            urlEditText.setHintTextColor(getColor(android.R.color.darker_gray));
 
-            new android.app.AlertDialog.Builder(this)
+            new android.app.AlertDialog.Builder(this, android.R.style.Theme_Material_Light_Dialog)
                     .setTitle("Stream Video URL")
                     .setView(urlEditText)
                     .setPositiveButton("Play", (dialog, which) -> {
@@ -64,11 +66,9 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, PICK_AUDIO_REQUEST);
         });
 
-        // --- SHARED CONTROLS ---
         findViewById(R.id.btnPlay).setOnClickListener(v -> {
             if (isVideoActive) {
                 if (isVideoStopped && currentVideoUrl != null) {
-                    // ✅ Reload from scratch after stop
                     isVideoStopped = false;
                     loadAndPlayVideo(0);
                 } else {
@@ -89,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btnStop).setOnClickListener(v -> {
             if (isVideoActive) {
-                videoView.stopPlayback(); // ✅ Fully stop
-                isVideoStopped = true;   // ✅ Mark as stopped so Play reloads it
+                videoView.stopPlayback();
+                isVideoStopped = true;
             } else if (mediaPlayer != null) {
                 mediaPlayer.pause();
                 mediaPlayer.seekTo(0);
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnRestart).setOnClickListener(v -> {
             if (isVideoActive && currentVideoUrl != null) {
                 isVideoStopped = false;
-                loadAndPlayVideo(0); // ✅ Always reload from position 0
+                loadAndPlayVideo(0);
             } else if (mediaPlayer != null) {
                 mediaPlayer.seekTo(0);
                 mediaPlayer.start();
@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // ✅ Central method to load + play video from a given position
     private void loadAndPlayVideo(int seekPosition) {
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
@@ -118,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
         videoView.setOnPreparedListener(mp -> {
             mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
-            videoView.seekTo(seekPosition == 0 ? 1 : seekPosition); // 1ms trick for first frame
+            videoView.seekTo(seekPosition == 0 ? 1 : seekPosition);
             videoView.start();
             Toast.makeText(this, "Video Playing...", Toast.LENGTH_SHORT).show();
         });

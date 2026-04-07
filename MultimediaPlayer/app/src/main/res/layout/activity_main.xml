@@ -12,7 +12,6 @@
         android:padding="16dp"
         android:gravity="center_horizontal">
 
-        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +28,6 @@
             android:background="@color/accent_blue"
             android:layout_marginBottom="20dp" />
 
-        <!-- Video Container -->
         <FrameLayout
             android:id="@+id/videoContainer"
             android:layout_width="match_parent"
@@ -46,7 +44,6 @@
 
         </FrameLayout>
 
-        <!-- Stream + File Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,7 +72,6 @@
 
         </LinearLayout>
 
-        <!-- Playback Controls -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
