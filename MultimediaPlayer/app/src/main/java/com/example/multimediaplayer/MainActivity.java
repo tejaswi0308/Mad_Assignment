@@ -10,6 +10,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private VideoView videoView;
@@ -26,21 +27,37 @@ public class MainActivity extends AppCompatActivity {
 
         videoView = findViewById(R.id.videoView);
 
-        // --- VIDEO STREAMING LOGIC ---
         findViewById(R.id.btnOpenURL).setOnClickListener(v -> {
-            isVideoActive = true;
-            isVideoStopped = false;
+            EditText urlEditText = new EditText(this);
+            urlEditText.setHint("Enter stream URL");
+            urlEditText.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_URI);
 
-            if (mediaPlayer != null) {
-                mediaPlayer.release();
-                mediaPlayer = null;
-            }
+            new android.app.AlertDialog.Builder(this)
+                    .setTitle("Stream Video URL")
+                    .setView(urlEditText)
+                    .setPositiveButton("Play", (dialog, which) -> {
+                        String url = urlEditText.getText().toString().trim();
 
-            currentVideoUrl = "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_30MB.mp4";
-            loadAndPlayVideo(0); // start from beginning
+                        if (url.isEmpty()) {
+                            Toast.makeText(this, "Please enter a URL", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        isVideoActive = true;
+                        isVideoStopped = false;
+
+                        if (mediaPlayer != null) {
+                            mediaPlayer.release();
+                            mediaPlayer = null;
+                        }
+
+                        currentVideoUrl = url;
+                        loadAndPlayVideo(0);
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
         });
 
-        // --- LOCAL AUDIO FILE LOGIC ---
         findViewById(R.id.btnOpenFile).setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("audio/*");
