@@ -45,28 +45,40 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
-                accelX.setText(String.format("X Axis: %.2f", values[0]));
-                accelY.setText(String.format("Y Axis: %.2f", values[1]));
-                accelZ.setText(String.format("Z Axis: %.2f", values[2]));
+                float x = values[0];
+                float y = values[1];
+                float z = values[2];
 
-                if (Math.abs(values[0]) > 12) accelX.setTextColor(Color.RED);
-                else accelX.setTextColor(Color.parseColor("#03DAC5"));
+                accelX.setText(String.format("%.2f", x));
+                accelY.setText(String.format("%.2f", y));
+                accelZ.setText(String.format("%.2f", z));
+
+                // Logic to turn red if shaken fast on ANY axis
+                if (Math.abs(x) > 12) accelX.setTextColor(Color.RED);
+                else accelX.setTextColor(Color.parseColor("#1A237E"));
+
+                if (Math.abs(y) > 12) accelY.setTextColor(Color.RED);
+                else accelY.setTextColor(Color.parseColor("#1A237E"));
+
+                if (Math.abs(z) > 15) accelZ.setTextColor(Color.RED); // Z usually sits at 9.8, so we use a higher threshold
+                else accelZ.setTextColor(Color.parseColor("#1A237E"));
                 break;
 
             case Sensor.TYPE_LIGHT:
-                lightValue.setText(String.format("Brightness: %.2f lx", values[0]));
+                lightValue.setText(String.format("%.2f lx", values[0]));
+                // Softer orange color if it's bright
                 if (values[0] < 10) lightValue.setTextColor(Color.GRAY);
-                else lightValue.setTextColor(Color.parseColor("#FFEB3B"));
+                else lightValue.setTextColor(Color.parseColor("#FB8C00"));
                 break;
 
             case Sensor.TYPE_PROXIMITY:
                 float dist = values[0];
+                proximityValue.setText(String.format("%.2f cm", dist));
                 if (proximitySensor != null && dist < proximitySensor.getMaximumRange()) {
-                    proximityValue.setText("Object Detected: NEAR");
+                    proximityValue.setText("NEAR");
                     proximityValue.setTextColor(Color.RED);
                 } else {
-                    proximityValue.setText(String.format("Distance: %.2f cm", dist));
-                    proximityValue.setTextColor(Color.parseColor("#BB86FC"));
+                    proximityValue.setTextColor(Color.parseColor("#1A237E"));
                 }
                 break;
         }
