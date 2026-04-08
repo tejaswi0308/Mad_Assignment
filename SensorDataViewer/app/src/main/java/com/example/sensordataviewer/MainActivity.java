@@ -19,16 +19,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Ensure your XML is named activity_main.xml
+        setContentView(R.layout.activity_main);
 
-        // UI Initialization
         accelX = findViewById(R.id.accelX);
         accelY = findViewById(R.id.accelY);
         accelZ = findViewById(R.id.accelZ);
         lightValue = findViewById(R.id.lightValue);
         proximityValue = findViewById(R.id.proximityValue);
 
-        // Sensor Initialization
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -53,20 +51,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 accelY.setText(String.format("%.2f", y));
                 accelZ.setText(String.format("%.2f", z));
 
-                // Logic to turn red if shaken fast on ANY axis
                 if (Math.abs(x) > 12) accelX.setTextColor(Color.RED);
                 else accelX.setTextColor(Color.parseColor("#1A237E"));
 
                 if (Math.abs(y) > 12) accelY.setTextColor(Color.RED);
                 else accelY.setTextColor(Color.parseColor("#1A237E"));
 
-                if (Math.abs(z) > 15) accelZ.setTextColor(Color.RED); // Z usually sits at 9.8, so we use a higher threshold
+                if (Math.abs(z) > 15) accelZ.setTextColor(Color.RED);
                 else accelZ.setTextColor(Color.parseColor("#1A237E"));
                 break;
 
             case Sensor.TYPE_LIGHT:
                 lightValue.setText(String.format("%.2f lx", values[0]));
-                // Softer orange color if it's bright
                 if (values[0] < 10) lightValue.setTextColor(Color.GRAY);
                 else lightValue.setTextColor(Color.parseColor("#FB8C00"));
                 break;
