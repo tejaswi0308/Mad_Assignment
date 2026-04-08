@@ -50,6 +50,6 @@ public class GridActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadImages(); // ✅ Just reload images, no recreate()
+        loadImages();
     }
 }

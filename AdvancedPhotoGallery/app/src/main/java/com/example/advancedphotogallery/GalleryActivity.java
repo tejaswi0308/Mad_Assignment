@@ -28,22 +28,21 @@ public class GalleryActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 102;
     private static final int FOLDER_PICK_REQUEST = 103;
 
-    private File currentPhotoFile; // ✅ add this field
-
+    private File currentPhotoFile;
     private static final String PREFS = "gallery_prefs";
     private static final String KEY_FOLDER = "last_folder";
     private static final String SAVE_FOLDER_NAME = "PhotoGalleryApp";
 
     private TextView tvCurrentFolder;
-    private File saveFolder;  // always fixed — where photos are saved
-    private File viewFolder;  // user chosen — what gallery shows
+    private File saveFolder;
+    private File viewFolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        // Request all files access on Android 11+
+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
             if (!Environment.isExternalStorageManager()) {
                 Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
@@ -52,12 +51,10 @@ public class GalleryActivity extends AppCompatActivity {
             }
         }
 
-        // ✅ saveFolder is always Pictures/PhotoGalleryApp
         saveFolder = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), SAVE_FOLDER_NAME);
         if (!saveFolder.exists()) saveFolder.mkdirs();
 
-        // ✅ viewFolder defaults to saveFolder, restored from prefs if user picked one
         String saved = getSharedPreferences(PREFS, MODE_PRIVATE).getString(KEY_FOLDER, null);
         viewFolder = (saved != null) ? new File(saved) : saveFolder;
 
@@ -95,7 +92,6 @@ public class GalleryActivity extends AppCompatActivity {
                     file
             );
 
-            // ✅ Store as currentPhotoFile to verify after capture
             currentPhotoFile = file;
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -131,7 +127,6 @@ public class GalleryActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CAMERA_REQUEST_CODE) {
-            // ✅ Ignore resultCode — some devices return RESULT_CANCELED even on success
             findViewById(android.R.id.content).postDelayed(() -> {
                 if (currentPhotoFile != null
                         && currentPhotoFile.exists()
@@ -172,7 +167,7 @@ public class GalleryActivity extends AppCompatActivity {
     }
 
     private void updateLabel() {
-        tvCurrentFolder.setText("💾 Saving to: Pictures/" + SAVE_FOLDER_NAME
-                + "\n👁 Viewing: " + viewFolder.getAbsolutePath());
+        tvCurrentFolder.setText("Saving to: Pictures/" + SAVE_FOLDER_NAME
+                + "\nViewing: " + viewFolder.getAbsolutePath());
     }
 }
