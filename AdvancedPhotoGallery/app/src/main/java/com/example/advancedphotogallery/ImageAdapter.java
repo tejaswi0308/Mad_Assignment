@@ -39,7 +39,6 @@ public class ImageAdapter extends BaseAdapter {
 
         String filePath = images.get(position).getAbsolutePath();
 
-        // ✅ Load scaled-down thumbnail to avoid OOM crashes
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 4;
         Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
@@ -47,7 +46,7 @@ public class ImageAdapter extends BaseAdapter {
 
         imageView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ImageDetailActivity.class);
-            intent.putExtra("image_path", filePath); // ✅ Fixed key to "image_path"
+            intent.putExtra("image_path", filePath);
             context.startActivity(intent);
         });
 

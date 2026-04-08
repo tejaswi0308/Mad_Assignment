@@ -16,7 +16,6 @@ public class ImageDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        // ✅ Fixed: was "path", must match what GalleryActivity sends: "image_path"
         String path = getIntent().getStringExtra("image_path");
 
         if (path == null) {
@@ -46,7 +45,7 @@ public class ImageDetailActivity extends AppCompatActivity {
                         .setPositiveButton("Delete", (d, w) -> {
                             if (file.delete()) {
                                 Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
-                                finish(); // ✅ Goes back to gallery, onResume refreshes grid
+                                finish();
                             } else {
                                 Toast.makeText(this, "Delete failed", Toast.LENGTH_SHORT).show();
                             }
