@@ -164,7 +164,7 @@ public class GalleryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return saveFolder;
-    }   
+    }
 
     private void updateLabel() {
         tvCurrentFolder.setText("Saving to: Pictures/" + SAVE_FOLDER_NAME
