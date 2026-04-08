@@ -3,22 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#121212">
+    android:background="#E3F2FD">
 
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#E8380D"
+        android:background="#1A237E"
         android:gravity="center_vertical"
-        android:paddingStart="16dp">
+        android:paddingStart="30dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Photo Gallery"
             android:textColor="#FFFFFF"
+            android:paddingTop="30px"
+            android:layout_marginTop="30px"
             android:textSize="20sp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <!-- Folder path bar -->
@@ -26,16 +30,18 @@
         android:id="@+id/tvFolderPath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#E8380D"
+        android:background="#3949AB"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:paddingBottom="8dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         android:text="/storage/..."
-        android:textColor="#FFFFFF"
+        android:textColor="#BBDEFB"
         android:textSize="11sp"
         android:ellipsize="middle"
         android:singleLine="true" />
 
+    <!-- Grid -->
     <GridView
         android:id="@+id/gridViewDisplay"
         android:layout_width="match_parent"
@@ -46,6 +52,6 @@
         android:verticalSpacing="2dp"
         android:padding="2dp"
         android:stretchMode="columnWidth"
-        android:background="#000000" />
+        android:background="#E3F2FD" />
 
 </LinearLayout>
