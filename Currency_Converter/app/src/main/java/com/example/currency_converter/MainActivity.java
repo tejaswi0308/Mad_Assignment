@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import java.util.HashMap;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private EditText amountInput;

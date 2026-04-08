@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_light_blue">#333333</color>
+    <color name="bg_light_blue">#0A0E1A</color>
+    <color name="title_color">#90CAF9</color>
+    <color name="accent_blue">#1565C0</color>
+    <color name="label_color">#90CAF9</color>
+    <color name="card_bg">#131929</color>
+    <color name="card_divider">#1E2D45</color>
+    <color name="input_text">#E3F2FD</color>
+    <color name="result_color">#64B5F6</color>
 </resources>
